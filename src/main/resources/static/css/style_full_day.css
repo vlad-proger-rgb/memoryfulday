@@ -1,0 +1,118 @@
+@import url("./style_button.css");
+
+body {
+    font-family: Verdana;
+    margin: 0;
+    padding: 10px;
+}
+
+
+
+.day__main-image {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    width: 70%;
+    border-radius: 5px;
+}
+
+
+
+.day__info {
+    width: 70%;
+}
+
+.day__note {
+    color: grey;
+    margin: 0;
+}
+
+.day__steps-img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+.day__description, .day__content {
+    background-color: lightgray;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+
+
+.left-right__right {
+    background-color: lightgrey;
+}
+.left-right__right:active {
+    background-color: grey;
+}
+
+
+
+
+
+/* Styles for the modal */
+.edit-modal {
+    display: none; /* Hidden by default */
+    overflow-y: scroll;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0,0,0,0.4); /* Overlay background */
+}
+
+.edit-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 70%; /* Could be adjusted */
+}
+
+.close {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+/* Clear floating elements */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+.edit-content input, .edit-content textarea {
+    display: block;
+    margin: 20px 10px;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    border: 0;
+    border-radius: 5px;
+    transition: all 0.3s;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+.edit-content input:focus, .edit-content textarea:focus {
+    box-shadow: 0px 0px 5px red;
+}
+
+.edit-content input:last-child:focus {
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+.edit-content textarea {
+    width: 90%;
+    height: auto;
+    resize: none;
+    overflow: hidden;
+}
+.edit-content label {
+    letter-spacing: 1px;
+}
+
+
+
+

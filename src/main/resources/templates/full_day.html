@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${month} + ' ' + ${dayNumber} + ' (' + ${year} + ')'"></title>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="../static/css/style_header.css" th:href="@{/css/style_header.css}">
+    <link rel="stylesheet" href="../static/css/style_footer.css" th:href="@{/css/style_footer.css}">
+    <link rel="stylesheet" href="../static/css/style_full_day.css" th:href="@{/css/style_full_day.css}">
+
+</head>
+<body>
+
+    <header th:insert="blocks/header :: header"></header>
+
+    <main>
+
+        <img class="day__main-image" src="../static/images/20230821_120812.jpg" th:src="@{/images/{mainImage}(mainImage=${day.getMain_image})}"> 
+
+        <div class="day__info">
+            <p>
+                <span class="day__year-number" th:text="${year}">2023</span>
+                <span class="day__month" th:text="${month}"><b>August</b></span>
+                <span class="day__day-number" th:text="${dayNumber}">21</span>
+            <!-- </p> -->
+
+            <!-- <p> -->
+                <img class="day__steps-img" src="../static/images/step_img.png" th:src="@{/images/step_img.png}">
+                <span class="day__steps" th:text="${day.steps}">5000</span>
+            </p>
+
+            <h5 class="day__note">Short description</h5>
+            <p class="day__description" th:text="${day.description}">Description of the day. Краткое описание сегодняшнего дня. Краткое описание сегодняшнего дня. Краткое описание сегодняшнего дня.</p>
+
+            <h5 class="day__note">Content of the day</h5>
+            <p class="day__content" th:text="${day.content}">Full conent of the day. Full conent of the day. Full conent of the day. Full conent of the day. Full conent of the day. </p>
+
+        </div>
+
+        <h3 class="day__note">Photogallery</h3>
+
+
+        <!-- <div th:each="imgpath : ${day.imagesPaths}">
+            <img th:src="@{/images/${imgpath}}">
+        </div> -->
+
+        <div>
+            
+            <button class="left-right" id="openEditModalBtn">
+                Edit Day
+            </button>
+
+            <button class="left-right left-right__right">
+                Go back
+            </button>
+        </div>
+
+
+
+        <div id="edit-modal" class="edit-modal">
+            <div class="edit-content">
+                <span class="close">&times;</span>
+                <h2>Edit Day Window</h2>
+
+                <form method="post" 
+                action="/calendar/{year}/{month}/{dayNumber}/edit(year=${year}, month=${month}, day=${dayNumber})"
+                th:object="${day}">
+
+                    <label for="steps_count">Daily steps</label>
+                    <input th:field="*{steps_count}" name="steps_count" type="number" tabindex="1" placeholder="10000">
+
+                    <label for="description">Description</label>
+                    <input th:field="*{description}" name="description" type="text" tabindex="2" placeholder="Enter day's description">
+
+                    <label for="conent">Content</label>
+                    <textarea th:field="*{conent}" name="conent" tabindex="3" placeholder="Enter day's content"></textarea>
+                
+                    <input type="submit" tabindex="4" class="left-right" id="editSubmit" value="Save">
+
+                </form>
+
+            </div>
+        </div>
+
+
+    </main>
+
+    <footer th:insert="blocks/footer :: footer"></footer>
+
+    <script>
+
+        const openModalBtn = document.getElementById("openEditModalBtn");
+        const modal = document.getElementById("edit-modal");
+        const closeModal = document.querySelector(".close");
+        const modalSubmitBtn = document.getElementById("editSubmit");
+
+        openModalBtn.addEventListener("click", () => {
+            modal.style.display = "block";
+        });
+
+        closeModal.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+
+        modalSubmitBtn.addEventListener("click", () => {
+            // Add your submit logic here
+            modal.style.display = "none";
+        });
+
+
+        const contentArea = document.querySelector(".edit-window__content");
+
+        contentArea.addEventListener("input", () => {
+            contentArea.style.height = "auto"; // Сбрасываем высоту на автоматическую
+            contentArea.style.height = contentArea.scrollHeight + "px"; // Устанавливаем высоту на основе высоты содержимого
+        });
+
+    </script>
+
+</body>
+</html>

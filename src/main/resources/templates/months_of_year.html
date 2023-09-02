@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${year}"></title>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="../static/css/style_header.css" th:href="@{/css/style_header.css}">
+    <link rel="stylesheet" href="../static/css/style_footer.css" th:href="@{/css/style_footer.css}">
+    <link rel="stylesheet" href="../static/css/style_months_of_year.css" th:href="@{/css/style_months_of_year.css}">
+</head>
+<body>
+
+    <header th:insert="~{blocks/header :: header}"></header>
+
+
+
+    <main>
+        <h1 th:text="${year}" class="year-heading"></h1>
+
+        <div th:each="month : ${monthsOfYear}">
+            <h3><a th:href="'/calendar/' + ${year} + '/' + ${month}" class="monthOfYear" th:text="${month}"></a></h3>
+        </div>
+
+        <div>
+            <div class="left-right">
+                <a th:href="'/calendar/' + ${year}">Last Year</a>
+            </div>
+            <div class="left-right">
+                <a th:href="'/calendar/' + ${year}">Next Year</a>
+            </div>
+        </div>
+        
+    </main>
+
+
+
+    <footer th:insert="~{blocks/footer :: footer}"></footer>
+
+</body>
+</html>

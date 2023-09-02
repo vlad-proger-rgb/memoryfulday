@@ -1,0 +1,40 @@
+.open-sidebar {
+    width: 50px;
+    cursor: pointer;
+    float: left;
+}
+
+.open-sidebar__layer {
+    width: 30px;
+    height: 5px;
+    background-color: gray;
+    margin: 5px;
+    border-radius: 15px;
+    transition: all 0.5s;
+}
+.open-sidebar:active > .open-sidebar__layer {
+    animation: open-sidebar-animation 0.3s ;
+}
+
+@keyframes open-sidebar-animation {
+    50% {
+        width: 20px;
+        height: 4.5px;
+        margin-left: 10px;
+        background-color: lightgray;
+    }
+}
+
+
+.nav-link {
+    font-family: Verdana;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    margin-left: 10px;
+    line-height: 50px;
+
+}
+.nav-link:hover {
+    color: grey;
+}

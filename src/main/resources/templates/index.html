@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head> 
+  <title th:text="${title}"></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+  <link rel="stylesheet" href="../static/css/style_header.css" th:href="@{/css/style_header.css}">
+  <link rel="stylesheet" href="../static/css/style_footer.css" th:href="@{/css/style_footer.css}">
+</head>
+<body>
+
+  <header th:insert="~{blocks/header :: header}"></header>
+ 
+  <main>
+
+    <p>Main element</p>
+
+  </main>
+
+  <footer th:insert="~{blocks/footer :: footer}"></footer>
+
+</body>
+</html>

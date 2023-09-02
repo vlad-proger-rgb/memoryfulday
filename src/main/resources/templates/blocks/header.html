@@ -1,0 +1,16 @@
+<div th:fragment="header">
+    <header>
+        <nav>
+            <div class="open-sidebar">
+                <div class="open-sidebar__layer"></div>
+                <div class="open-sidebar__layer"></div>
+                <div class="open-sidebar__layer"></div>
+            </div>
+            <a class="nav-link" th:href="@{/calendar/{year}(year=${year})}">Календарь</a>
+            <a class="nav-link" th:href="@{/gallery}">Галерея</a>
+            <a class="nav-link" th:href="@{/search}">Поиск</a>
+            <a class="nav-link" th:href="@{/about}">Про нас</a>
+            <a class="nav-link" th:href="@{/}"><img src="" alt="logo_img"> MemoryfulDay logo</a>
+        </nav>
+    </header>
+</div>

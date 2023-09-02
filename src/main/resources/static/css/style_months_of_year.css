@@ -1,0 +1,24 @@
+@import url("./style_button.css");
+
+.year-heading {
+    font-family: Verdana;
+    letter-spacing: 10px;
+    margin-left: 50px;
+    user-select: none;
+}
+
+.monthOfYear {
+    font-family: Verdana;
+    letter-spacing: 5px;
+    font-size: 20px;
+    text-decoration: none;
+    margin: 10px;
+    cursor: pointer;
+    user-select: none;
+    color: black;
+
+}
+
+.monthOfYear:hover {
+    color: grey;
+}
