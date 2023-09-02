@@ -22,3 +22,7 @@
 .monthOfYear:hover {
     color: grey;
 }
+
+.left-right {
+    float: left;
+}

@@ -23,10 +23,10 @@
 
         <div>
             <div class="left-right">
-                <a th:href="'/calendar/' + ${year}">Last Year</a>
+                <a th:href="'/calendar/' + ${year - 1}">Last Year</a>
             </div>
             <div class="left-right">
-                <a th:href="'/calendar/' + ${year}">Next Year</a>
+                <a th:href="'/calendar/' + ${year + 1}">Next Year</a>
             </div>
         </div>
         

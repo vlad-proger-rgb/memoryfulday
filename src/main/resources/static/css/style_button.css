@@ -17,6 +17,7 @@
 
     cursor: pointer;
     user-select: none;
+    display: inline-block;
 
 }
 
@@ -27,3 +28,12 @@
 .left-right:active {
     background-color: green;
 }
+
+.left-right a {
+    color: white;
+}
+
+.left-right a:visited {
+    color: white;
+}
+
