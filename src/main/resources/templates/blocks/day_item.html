@@ -1,11 +1,10 @@
 <div class="day-item" th:fragment="dayItem">
-
-    <!-- <img class="day-item__main-image" th:src="@{/images/{mainImage}(main_image=${day.main_image})}"> -->
+    <img class="day-item__main-image" th:src="@{/images/{mainImage}(mainImage=${day.getMainImage()})}">
 
     <div class="day-item__info">
         <span th:text="${year}">2023</span>
         <span th:text="${month}"><b>August</b></span>
-        <span class="day-item__day-number" th:text="${dayNumber}">21</span>
+        <span class="day-item__day-number" th:text="${dayStat.index+1}">21</span>
 
 
         <p>
@@ -13,12 +12,15 @@
                  src="/static/images/step_img.png" 
                  th:src="@{/images/step_img.png}">
 
-            <span class="day-item__steps" th:text="${day.steps}">5000</span>
+            <span class="day-item__steps" th:text="${day.getSteps()}">5000</span>
         </p>
 
-        <p class="day-item__description" th:text="${day.description}">Description of the day. Краткое описание сегодняшнего дня. Краткое описание сегодняшнего дня. Краткое описание сегодняшнего дня.</p>
+        <p class="day-item__description" th:text="${day.getDescription()}">Description of the day. Краткое описание сегодняшнего дня. Краткое описание сегодняшнего дня. Краткое описание сегодняшнего дня.</p>
     </div>
 
-    <button class="left-right day-item__open-button"><a th:href="@{/calendar/{year}/{month}/{dayNumber}(year=${year}, month=${month}, dayNumber=${dayNumber})}">Open</a></button>
-
+    <button class="left-right day-item__open-button">
+        <a th:href="@{/calendar/{year}/{month}/{dayNumber}(year=${year}, month=${month}, dayNumber=${dayStat.index+1})}">
+            Open
+        </a>
+    </button>
 </div>

@@ -3,51 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${month}"></title>
-    <!-- <link href="../static/css/style.css" rel="stylesheet"> -->
+    <link href="../static/css/style.css" rel="stylesheet">
     <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
-    <link href="../static/css/style_button.css" th:href="@{/css/style_button.css}" rel="stylesheet">
-    <link href="../static/css/style_header.css" th:href="@{/css/style_header.css}" rel="stylesheet">
-    <link href="../static/css/style_footer.css" th:href="@{/css/style_footer.css}" rel="stylesheet">
-    <link href="../static/css/style_day_item.css" th:href="@{/css/style_day_item.css}" rel="stylesheet">
-    <link href="../static/css/style_days_of_month.css" th:href="@{/css/style_days_of_month.css}" rel="stylesheet">
+    <link href="../static/css/style_button.css" th:href="@{/css/style_button.css}" rel="stylesheet" type="text/css">
+    <link href="../static/css/style_header.css" th:href="@{/css/style_header.css}" rel="stylesheet" type="text/css">
+    <link href="../static/css/style_footer.css" th:href="@{/css/style_footer.css}" rel="stylesheet" type="text/css">
+    <link href="../static/css/style_day_item.css" th:href="@{/css/style_day_item.css}" rel="stylesheet" type="text/css">
+    <link href="../static/css/style_days_of_month.css" th:href="@{/css/style_days_of_month.css}" rel="stylesheet" type="text/css">
+
+    <script src="../static/scripts/script.js" th:href="@{/script/script.js}" rel="javascript" type="text/javascript"></script>
+
 </head>
 <body>
 
     <header th:insert="~{blocks/header :: header}"></header>
 
-    <!-- ${daysInMonth} -->
-    <!-- <main th:each="day : {здесь кол-во (число) дней в месяце}">
-        <a th:href="'/calendar/' + ${month} + '/' + ${day}" class="daysInMonth__day" th:text="${day}"></a>
-        <div th:insert="blocks/day_item :: dayItem"></div>
-    </main> -->
-
-
-    <main> <!--th:with="daysInMonth=${daysInMonth}"-->
-
-        <!-- <div th:each="dayNumber : ${#numbers.sequence(1, daysInMonth)}"> -->
-        <div th:if="${not #lists.isEmpty(days)}" th:each="day : ${days}">
-            <!-- <a th:href="'/calendar/' + ${month} + '/' + ${day}" class="dayInMonth__day" th:text="${day}"></a> -->
-            <!-- <div th:insert="~{blocks/day_item :: dayItem}"></div> -->
-            <div class="day-item__info">
-                <span th:text="${day.year}">2023</span>
-                <span th:text="${day.month}"><b>August</b></span>
-                <span class="day-item__day-number" th:text="${day.dayNumber}">21</span>
-        
-        
-                <p>
-                    <img class="day-item__steps-img" 
-                         src="/static/images/step_img.png" 
-                         th:src="@{/images/step_img.png}">
-        
-                    <span class="day-item__steps" th:text="${day.steps}">5000</span>
-                </p>
-        
-                <p class="day-item__description" th:text="${day.description}">Description of the day. Краткое описание сегодняшнего дня. Краткое описание сегодняшнего дня. Краткое описание сегодняшнего дня.</p>
-            </div>
-        
-            <button class="left-right day-item__open-button"><a th:href="@{/calendar/{year}/{month}/{dayNumber}(year=${year}, month=${month}, dayNumber=${dayNumber})}">Open</a></button>
-        
-        </div>
+    <main>
+        <div th:if="${not #lists.isEmpty(dayArray)}" th:each="day, dayStat : ${dayArray}" th:insert="~{blocks/day_item :: dayItem}"></div>
     </main>
 
     <footer th:insert="~{blocks/footer :: footer}"></footer>

@@ -12,11 +12,11 @@
 </head>
 <body>
 
-    <header th:insert="blocks/header :: header"></header>
+    <header th:insert="~{blocks/header :: header}"></header>
 
-    <main>
+    <main th:each="day : ${currentDay}">
 
-        <img class="day__main-image" src="../static/images/20230821_120812.jpg" th:src="@{/images/{mainImage}(mainImage=${day.getMain_image})}"> 
+        <img class="day__main-image" src="../static/images/20230821_120812.jpg" th:src="@{/images/{mainImage}(mainImage=${day.mainImage})}" alt="There must be an image of that day">
 
         <div class="day__info">
             <p>
@@ -27,7 +27,7 @@
 
             <!-- <p> -->
                 <img class="day__steps-img" src="../static/images/step_img.png" th:src="@{/images/step_img.png}">
-                <span class="day__steps" th:text="${day.steps}">5000</span>
+                <span class="day__steps" th:text="${day.steps}"></span>
             </p>
 
             <h5 class="day__note">Short description</h5>
@@ -46,13 +46,15 @@
         </div> -->
 
         <div>
-            
+
             <button class="left-right" id="openEditModalBtn">
                 Edit Day
             </button>
 
             <button class="left-right left-right__right">
-                Go back
+                <a th:href="@{/calendar/{year}/{month}(year=${year}, month=${month})}">
+                    Go back
+                </a>
             </button>
         </div>
 
@@ -63,19 +65,30 @@
                 <span class="close">&times;</span>
                 <h2>Edit Day Window</h2>
 
-                <form method="post" 
-                action="/calendar/{year}/{month}/{dayNumber}/edit(year=${year}, month=${month}, day=${dayNumber})"
-                th:object="${day}">
+                <form method="post"
+                    th:object="${gotDay}"
+                    >
+                    <!-- enctype="multipart/form-data" -->
 
-                    <label for="steps_count">Daily steps</label>
-                    <input th:field="*{steps_count}" name="steps_count" type="number" tabindex="1" placeholder="10000">
+<!--                    action="@{/calendar/{year}/{month}/{dayNumber}(year=${year}, month=${month}, dayNumber=${dayNumber})}"-->
+
+
+<!--                    <input value="" th:field="*{mainImagePath}" type="hidden" id="mainImagePath">-->
+
+<!--                    <label for="mainImage">Main Image</label>-->
+<!--                    <input th:field="*{mainImage}" id="mainImage" type="file">-->
+
+                    <label for="steps">Daily steps</label>
+                    <input value="${day.steps}" th:field="*{steps}" id="steps" type="number" tabindex="1" placeholder="10000">
 
                     <label for="description">Description</label>
-                    <input th:field="*{description}" name="description" type="text" tabindex="2" placeholder="Enter day's description">
+                    <input value="${day.description}" th:field="*{description}" id="description" type="text" tabindex="2" placeholder="Enter day's description">
 
-                    <label for="conent">Content</label>
-                    <textarea th:field="*{conent}" name="conent" tabindex="3" placeholder="Enter day's content"></textarea>
+                    <label for="content">Content</label>
+                    <textarea th:text="${day.content}" th:field="*{content}" id="content" tabindex="3" placeholder="Enter day's content"></textarea>
                 
+                    
+
                     <input type="submit" tabindex="4" class="left-right" id="editSubmit" value="Save">
 
                 </form>
@@ -86,30 +99,30 @@
 
     </main>
 
-    <footer th:insert="blocks/footer :: footer"></footer>
+    <footer th:insert="~{blocks/footer :: footer}"></footer>
 
     <script>
 
-        const openModalBtn = document.getElementById("openEditModalBtn");
-        const modal = document.getElementById("edit-modal");
-        const closeModal = document.querySelector(".close");
+        const openEditModalBtn = document.getElementById("openEditModalBtn");
+        const editModal = document.getElementById("edit-modal");
+        const closeEditModal = document.querySelector(".close");
         const modalSubmitBtn = document.getElementById("editSubmit");
 
-        openModalBtn.addEventListener("click", () => {
-            modal.style.display = "block";
+        openEditModalBtn.addEventListener("click", () => {
+            editModal.style.display = "block";
         });
 
-        closeModal.addEventListener("click", () => {
-            modal.style.display = "none";
+        closeEditModal.addEventListener("click", () => {
+            editModal.style.display = "none";
         });
 
         modalSubmitBtn.addEventListener("click", () => {
             // Add your submit logic here
-            modal.style.display = "none";
+            editModal.style.display = "none";
         });
 
 
-        const contentArea = document.querySelector(".edit-window__content");
+        const contentArea = document.getElementById("content");
 
         contentArea.addEventListener("input", () => {
             contentArea.style.height = "auto"; // Сбрасываем высоту на автоматическую

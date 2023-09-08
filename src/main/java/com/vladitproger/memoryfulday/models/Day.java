@@ -4,32 +4,49 @@ package com.vladitproger.memoryfulday.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+//import org.springframework.web.multipart.MultipartFile;
 
 @Entity
-@Table(schema = "memoryful")
+@Table(schema = "memoryfulday", name = "memoryful")
 public class Day {
 
     @Id
     private Long timestamp;
-    private String brief_desc, full_desc;
+    private String description, content;
     private int steps;
-    private String main_image;
-    private String all_images;
+    private String mainImage;
+//    private MultipartFile mainImage;
+
+    private String allImages;
+
+    public Day() {}
 
     public Day(Long timestamp) {
         this.timestamp = timestamp;
-        this.main_image = "20230821_120812.jpg";
-        this.brief_desc = "No brief description";
+        this.mainImage = "NoPhoto.png";
+        this.description = "No brief description";
         this.steps = 0;
-        this.full_desc = "No content";
+        this.content = "No content";
     }
 
-    public Day(Long timestamp, String brief_desc, String full_desc, int steps, String main_image) {
+    public Day(Long timestamp, String mainImage, String description, String content, int steps) {
         this.timestamp = timestamp;
-        this.brief_desc = brief_desc;
-        this.full_desc = full_desc;
+        this.mainImage = mainImage;
+        this.description = description;
+        this.content = content;
         this.steps = steps;
-        this.main_image = main_image;
+    }
+
+    @Override
+    public String toString() {
+        return "Day{" +
+                "timestamp=" + timestamp +
+                ", description='" + description + '\'' +
+                ", content='" + content + '\'' +
+                ", steps=" + steps +
+                ", mainImage='" + mainImage + '\'' +
+                ", allImages='" + allImages + '\'' +
+                '}';
     }
 
     public Long getTimestamp() {
@@ -40,20 +57,20 @@ public class Day {
         this.timestamp = timestamp;
     }
 
-    public String getBrief_desc() {
-        return brief_desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setBrief_desc(String brief_desc) {
-        this.brief_desc = brief_desc;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getFull_desc() {
-        return full_desc;
+    public String getContent() {
+        return content;
     }
 
-    public void setFull_desc(String full_desc) {
-        this.full_desc = full_desc;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public int getSteps() {
@@ -64,19 +81,29 @@ public class Day {
         this.steps = steps;
     }
 
-    public String getMain_image() {
-        return main_image;
+//    public String getMainImagePath() {
+//        return mainImagePath;
+//    }
+
+//    public void setMainImagePath(String mainImagePath) {
+//        this.mainImagePath = mainImagePath;
+//    }
+
+
+    public String getMainImage() {
+        return mainImage;
     }
 
-    public void setMain_image(String main_image) {
-        this.main_image = main_image;
+    public void setMainImage(String mainImage) {
+        this.mainImage = mainImage;
     }
 
-    public String getAll_images() {
-        return all_images;
+    public String getAllImages() {
+        return allImages;
     }
 
-    public void setAll_images(String all_images) {
-        this.all_images = all_images;
+    public void setAllImages(String allImages) {
+        this.allImages = allImages;
     }
+
 }
