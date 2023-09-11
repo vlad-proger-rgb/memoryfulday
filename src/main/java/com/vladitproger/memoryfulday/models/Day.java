@@ -49,6 +49,8 @@ public class Day {
                 '}';
     }
 
+
+
     public Long getTimestamp() {
         return timestamp;
     }

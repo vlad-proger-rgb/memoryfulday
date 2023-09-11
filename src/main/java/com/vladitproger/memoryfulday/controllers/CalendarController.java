@@ -122,7 +122,13 @@ public class CalendarController {
         Optional<Day> gotDay = dayRepository.findById(timestamp);
         ArrayList<Day> currentDay = new ArrayList<>();
 
-        gotDay.ifPresent(currentDay::add);
+//        gotDay.ifPresent(currentDay::add);
+
+        if (gotDay.isPresent()) {
+            currentDay.add(gotDay.get());
+        } else {
+            currentDay.add(new Day(timestamp));
+        }
 
         System.out.println("gotDay:" + gotDay);
         System.out.println("currentDay:" + currentDay.get(0).toString());

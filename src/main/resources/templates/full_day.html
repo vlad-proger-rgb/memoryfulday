@@ -23,9 +23,7 @@
                 <span class="day__year-number" th:text="${year}">2023</span>
                 <span class="day__month" th:text="${month}"><b>August</b></span>
                 <span class="day__day-number" th:text="${dayNumber}">21</span>
-            <!-- </p> -->
 
-            <!-- <p> -->
                 <img class="day__steps-img" alt="step_img.png" src="../static/images/step_img.png" th:src="@{/images/step_img.png}">
                 <span class="day__steps" th:text="${day.steps}"></span>
             </p>
@@ -68,7 +66,8 @@
                 <form method="post"
                     th:object="${gotDay}"
                     >
-                    <!-- enctype="multipart/form-data" -->
+
+<!--                    enctype="multipart/form-data"-->
 
 <!--                    action="@{/calendar/{year}/{month}/{dayNumber}(year=${year}, month=${month}, dayNumber=${dayNumber})}"-->
 
