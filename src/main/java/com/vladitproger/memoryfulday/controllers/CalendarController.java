@@ -156,13 +156,13 @@ public class CalendarController {
         if (!mainImage.isEmpty()) {
             String fileName = mainImage.getOriginalFilename();
             System.out.println("static/images/   " + fileName);
-            System.out.println("MainImagePath:" + mainImagePath);
+            System.out.println("MainImage:" + mainImage);
             try {
                 byte[] bytes = mainImage.getBytes();
                 Path path = Paths.get("static/images/" + fileName);
                 Files.write(path, bytes);
 
-                currentDay.setMainImagePath(mainImagePath);
+                currentDay.setMainImage(mainImage);
             } catch (IOException e) {
                 e.printStackTrace();
             }
