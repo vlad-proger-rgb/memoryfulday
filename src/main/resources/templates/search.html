@@ -1,10 +1,231 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
     <title>Search</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="../static/css/style_header.css" th:href="@{/css/style_header.css}">
+    <link rel="stylesheet" href="../static/css/style_footer.css" th:href="@{/css/style_footer.css}">
+    <link rel="stylesheet" href="../static/css/style_button.css" th:href="@{/css/style_button.css}">
+    
+    <link rel="stylesheet" href="../static/css/style_search.css" th:href="@{/css/style_search.css}">
+    <link rel="stylesheet" href="../static/css/style_search_item.css" th:href="@{/css/style_search_item.css}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
 </head>
 <body>
+
+    <header th:insert="~{blocks/header :: header}"></header>
+
+
+    <main>
+
+        <div class="search-bar">
+            <span class="pretty-button filter-open fas fa-sliders-h"></span>
+            <input class="search-bar__input" type="text" placeholder="Type here to search">
+            <i class="pretty-button fas fa-search search-run"></i>
+        </div>
+
+
+
+
+
+
+        <div class="search-results" 
+        th:each="result : ${results}" 
+        th:insert="~{search_result_item :: search_result_item}">
+
+        </div>
+
+
+        <div class="search-result-item" th:fragment="search_result_item">
+            <div class="result-content">
+
+                <p class="result-title">result-title</p>
+                <p class="result-info">
+                    <span class="result-date">18.09.23</span>
+                    <span class="result-subtitle"><sub>sub</sub>title</span>
+                </p>
+            </div>
+
+            <button class="left-right result-open"><a href="https://google.com">Open</a></button>
+
+        </div>
+
+        <div class="search-result-item" th:fragment="search_result_item">
+            <div class="result-content">
+
+                <p class="result-title">result-title</p>
+                <p class="result-info">
+                    <span class="result-date">18.09.23</span>
+                    <span class="result-subtitle"><sub>sub</sub>title</span>
+                </p>
+            </div>
+
+            <button class="left-right result-open">Open</button>
+
+        </div>
+
+
+        <div class="search-result-item" th:fragment="search_result_item">
+            <div class="result-content">
+
+                <p class="result-title">result-title</p>
+                <p class="result-info">
+                    <span class="result-date">18.09.23</span>
+                    <span class="result-subtitle"><sub>sub</sub>title</span>
+                </p>
+            </div>
+
+            <button class="left-right result-open">Open</button>
+
+        </div>
+
+
+        <div class="search-result-item" th:fragment="search_result_item">
+            <div class="result-content">
+
+                <p class="result-title">result-title</p>
+                <p class="result-info">
+                    <span class="result-date">18.09.23</span>
+                    <span class="result-subtitle"><sub>sub</sub>title</span>
+                </p>
+            </div>
+
+            <button class="left-right result-open">Open</button>
+
+        </div>
+
+
+
+        <div class="search-result-item" th:fragment="search_result_item">
+            <div class="result-content">
+
+                <p class="result-title">result-title</p>
+                <p class="result-info">
+                    <span class="result-date">18.09.23</span>
+                    <span class="result-subtitle"><sub>sub</sub>title</span>
+                </p>
+            </div>
+
+            <button class="left-right result-open">Open</button>
+
+        </div>
+
+
+    </main>
+
+    <div id="search-filter-modal">
+        <div id="search-filter-modal-content">
+
+            <p class="filter-modal-header">
+                <span class="filter-modal-title">Filters</span>
+                <a class="pretty-button fa fa-close close-filter-modal" id="close"></a>
+            </p>
+
+
+            <p>Select date period:</p>
+
+            <div class="date-period">
+
+                <span>Start:</span>
+                <input type="date" class="start-date">
+
+                <span>End:</span>
+                <input type="date" class="end-date">
+
+            </div>
+
+            <p>Select tags that would help to shorten data to research and safe your time</p>
+
+
+            <div class="filter-tags-container" th:each="tag, tagStat : ${tags}">
+
+                <span class="filter-tag" th:text="${tag.getTagName()}">#travel</span>
+                <span class="filter-tag" th:text="${tag.getTagName()}">#school</span>
+                <span class="filter-tag" th:text="${tag.getTagName()}">#krakow</span>
+                <span class="filter-tag" th:text="${tag.getTagName()}">#holiday</span>
+                <span class="filter-tag" th:text="${tag.getTagName()}">#warsaw</span>
+                <span class="filter-tag" th:text="${tag.getTagName()}">#warsaw</span>
+                <span class="filter-tag" th:text="${tag.getTagName()}">#warsaw</span>
+                <span class="filter-tag" th:text="${tag.getTagName()}">#warsaw</span>
+                <span class="filter-tag" th:text="${tag.getTagName()}">#warsaw</span>
+                <span class="filter-tag" th:text="${tag.getTagName()}">#warsaw</span>
+
+
+
+            </div>
+
+            <button class="left-right" id="search-filter-submit">Save filters</button>
+
+
+        </div>
+    </div>
+
+
+    <footer th:insert="~{blocks/footer :: footer}"></footer>
+
+    <script>
+
+        let filterModal = document.getElementById("search-filter-modal");
+
+        let openFilterModalButton = document.querySelector(".filter-open");
+        let closeFilterModalButton = document.getElementById("close");
+        let sumbitFilterModalButton = document.getElementById("search-filter-submit");
+
+        openFilterModalButton.addEventListener("click", () => {
+            filterModal.style.display = "block";
+        });
+
+        closeFilterModalButton.addEventListener("click", () => {
+            filterModal.style.display = "none";
+        });
+
+        sumbitFilterModalButton.addEventListener("click", () => {
+            // Add your submit logic here
+            filterModal.style.display = "none";
+        });
+
+
+        // let filters = {
+        //     "start-date": document.querySelector("start-date"),
+        //     "end-date": document.querySelector("end-date"),
+
+        //     // "tags": fetchTags()
+
+        // }
+
+        let searchRun = document.querySelector(".search-run");
+        let filterTagsContainer = document.querySelector(".filter-tags-container");
+
+
+        filterTagsContainer.addEventListener('click', (event) => {
+            if (event.target.classList.contains('filter-tag')) {
+                event.target.classList.toggle('selected');
+            }
+        });
+
+        searchRun.addEventListener("click", () => {
+
+            let searchQuery = document.querySelector(".search-bar__input").value;
+            let startDate = document.querySelector(".start-date").value;
+            let endDate = document.querySelector(".end-date").value;
+
+
+            let selectedTags = Array.from(filterTagsContainer.querySelectorAll('.filter-tag.selected')).map(tag => tag.textContent.trim().split("#")[1]);
+            console.log('Выбранные теги:', selectedTags);
+
+            let pageUrl = `search?q=${searchQuery}&startDate=${startDate}&endDate=${endDate}&tags=[${selectedTags}]`;
+
+            window.location.href = pageUrl;
+
+        });
+
+
+    </script>
 
 </body>
 </html>

@@ -22,12 +22,6 @@ public class MainController {
 		return "gallery";
 	}
 
-	@GetMapping("/search")
-	public String search(Model model) {
-		model.addAttribute("asd", "asd");
-		return "search";
-	}
-
 	@GetMapping("/about")
 	public String about(Model model) {
 		model.addAttribute("asd", "asd");

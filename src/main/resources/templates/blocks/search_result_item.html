@@ -1,0 +1,17 @@
+<div class="search-result-item" th:fragment="search_result_item">
+    <div class="result-content">
+
+        <p class="result-title" th:text="${result.getTitle()}">result-title</p>
+        <p class="result-info">
+            <span class="result-date" th:text="${result.getDate()}">18.09.23</span>
+            <span class="result-subtitle" th:text="${result.getSubtitle()}">sub title</span>
+        </p>
+    </div>
+
+    <button class="left-right">
+        <a th:href="@{/calendar/{year}/{month}/{dayNumber}(year=${result.getYear()}, month=${result.getMonth()}, dayNumber=${result.getDayNumber()})}">
+            Open
+        </a>
+    </button>
+
+</div>

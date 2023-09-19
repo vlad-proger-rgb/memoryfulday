@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
+    <title th:text="${month} + ' ' + ${dayNumber} + ' (' + ${year} + ')'"></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${month} + ' ' + ${dayNumber} + ' (' + ${year} + ')'"></title>
+
     <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
     <link rel="stylesheet" href="../static/css/style_header.css" th:href="@{/css/style_header.css}">
     <link rel="stylesheet" href="../static/css/style_footer.css" th:href="@{/css/style_footer.css}">
@@ -116,7 +117,6 @@
         });
 
         modalSubmitBtn.addEventListener("click", () => {
-            // Add your submit logic here
             editModal.style.display = "none";
         });
 

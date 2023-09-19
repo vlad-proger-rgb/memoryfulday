@@ -1,5 +1,16 @@
+
+<head>
+    <link rel="stylesheet" href="style_day_item.css">
+    <style>
+        body{font-family: Verdana;}
+    </style>
+</head>
+
+
 <div class="day-item" th:fragment="dayItem">
-    <img class="day-item__main-image" th:src="@{/images/{mainImage}(mainImage=${day.getMainImage()})}">
+    <img class="day-item__main-image" 
+    src="C:\Users\vlad0\OneDrive\Рабочий стол\Proger\Java learn\memoryfulday\src\main\resources\static\images\20230821_120812.jpg"
+    th:src="@{/images/{mainImage}(mainImage=${day.getMainImage()})}">
 
     <div class="day-item__info">
         <span th:text="${year}">2023</span>
@@ -9,13 +20,13 @@
 
         <p>
             <img class="day-item__steps-img" 
-                 src="/static/images/step_img.png" 
+                 src="C:\Users\vlad0\OneDrive\Рабочий стол\Proger\Java learn\memoryfulday\src\main\resources\static\images\step_img.png" 
                  th:src="@{/images/step_img.png}">
 
             <span class="day-item__steps" th:text="${day.getSteps()}">5000</span>
         </p>
 
-        <p class="day-item__description" th:text="${day.getDescription()}">Description of the day. Краткое описание сегодняшнего дня. Краткое описание сегодняшнего дня. Краткое описание сегодняшнего дня.</p>
+        <p class="day-item__description" th:text="${day.getDescription()}">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, iste dolorum iure aliquid, veniam aperiam iusto? Cum sunt at dolore tenetur optio nostrum esse, veritatis, ducimus autem eum. Ipsam, porro.</p>
     </div>
 
     <button class="left-right day-item__open-button">
